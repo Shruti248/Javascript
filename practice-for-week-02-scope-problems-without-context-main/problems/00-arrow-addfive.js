@@ -16,9 +16,14 @@ let result3 = addFive(37); // returns 42
 
 
 ***********************************************************************/
+debugger
 
 // Your code here
 let addFive = (number) => number+5;
+
+addFive(0);
+addFive(10);
+addFive(addFive(addFive(15)));
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
