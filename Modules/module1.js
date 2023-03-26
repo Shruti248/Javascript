@@ -26,6 +26,9 @@ let divide = (num1 , num2) => num1/num2;
 // Export as additional properties for teh already existinng object of the module.exports
 // SO NO new Object is created
 // Properties are added to the module.exports object
-module.exports.add = add;
-module.exports.subtract = subtract;
-module.exports.operations = operations;
+// module.exports.add = add;
+// module.exports.subtract = subtract;
+// module.exports.operations = operations;
+
+// Exporting exactly 1 module
+module.exports = add;

@@ -12,8 +12,14 @@
 
 
 // Using destructing to import the object
-const {add , subtract , operations} = require('./module1')
+// const {add , subtract , operations} = require('./module1')
 
-console.log("Add : " , add(1 , 2));
-console.log("Subtract : " , subtract(1 , 2));
-console.log("Operations : " , operations);
+// console.log("Add : " , add(1 , 2));
+// console.log("Subtract : " , subtract(1 , 2));
+// console.log("Operations : " , operations);
+
+// Importing exactly 1 module
+const add = require('./module1');
+
+
+console.log("Add : " , add(5 , 4));
