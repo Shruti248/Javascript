@@ -19,7 +19,13 @@
 // console.log("Operations : " , operations);
 
 // Importing exactly 1 module
-const add = require('./module1');
+// const add = require('./module1');
 
 
-console.log("Add : " , add(5 , 4));
+// console.log("Add : " , add(5 , 4));
+
+
+// Importing a Folder as a Module
+// Node will look for teh  index.js file inside the folder.
+// if the index.js is not Found : Then it will throw err : CANNOT FIND MODULE
+const importingAFolderAsAModule = require('./ImportingAFolderInModule2');
