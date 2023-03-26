@@ -26,3 +26,25 @@ console.log(authorInfo);
 
 // Using the instanceof operator to check an object's type
 console.log("is bookObj instance of Book ? --------" , bookObj instanceof Book)
+
+
+class Task {
+    static taskList = [];
+
+    static printTaskList() {
+      console.log(this.taskList);
+    }
+
+    static addTask(task) {
+      this.taskList.push(task);
+    }
+
+    constructor(taskDetail) {
+      this.taskDetail = taskDetail;
+      Task.addTask(this);
+    }
+  }
+
+  const laundry = new Task('laundry');
+  console.log(Task.printTaskList());
+  console.log(laundry.taskList);
