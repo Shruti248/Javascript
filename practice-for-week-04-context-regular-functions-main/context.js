@@ -1,3 +1,6 @@
+// console.log(this);
+// console.log(globalThis);
+
 
 // function testMe() {
 //     console.log(this);
@@ -47,9 +50,20 @@
 
 
 
-function hello() {
-    console.log(`Hello ${this.firstName}`);
-  }
+// function hello() {
+//     console.log(`Hello ${this.firstName}`);
+//   }
 
-  const greeting = new hello('Hello');
-  console.log(greeting);
+//   const greeting = new hello('Hello');
+//   console.log(greeting);
+
+
+function foo(){
+  console.log(this);
+}
+
+console.log(foo());
+
+
+new foo();
+console.log(foo());
