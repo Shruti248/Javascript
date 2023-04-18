@@ -58,6 +58,17 @@ app.post('/artists' , (req , res) => {
 })
 
 
+app.get('/artist/latest' , (req , res) => {
+  let data = getLatestArtist();
+  res.status(200).json(data);
+})
+
+app.get('/artist/latest/albums' , (req , res) => {
+  let data = getAlbumsForLatestArtist();
+  res.status(200).json(data);
+})
+
+
 // DO NOT MODIFY
 if (require.main === module) {
   const port = 8000;
