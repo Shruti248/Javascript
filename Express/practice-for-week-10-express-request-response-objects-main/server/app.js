@@ -11,7 +11,7 @@ app.use(express.json());
  *     Response (Text): "1.0.0"
  */
 // Your code here
-app.get('/version' , (req , res) => {
+app.get('/version', (req, res) => {
     res.send('1.0.0');
 })
 
@@ -32,13 +32,13 @@ app.get('/version' , (req , res) => {
  *  combined with the id sent as a route parameter in the url
  */
 // Your code here
-app.get('/viewers/:id' , (req , res) => {
+app.get('/viewers/:id', (req, res) => {
     let data = {
-        "userId" : req.params.id,
-        "firstName" : "Shruti" ,
-        'lastName' : "Unadkat" ,
-        "birthDate" : "08-24/2002",
-        "favouriteMovies": ['Movie1' , 'Movie2']
+        "id": req.params.id,
+        "firstName": "Shruti",
+        'lastName': "Unadkat",
+        "birthDate": "08-24/2002",
+        "favoriteMovies": ['Movie1', 'Movie2']
     }
 
     res.json(data);
@@ -62,12 +62,12 @@ app.get('/viewers/:id' , (req , res) => {
  *          message required
  */
 // Your code here
-app.get('/info' , (req , res) => {
+app.get('/info', (req, res) => {
     let query = req.query.message;
 
-    if(query){
+    if (query) {
         res.send(query);
-    }else{
+    } else {
         res.send('message required')
     }
 })
@@ -105,6 +105,22 @@ app.get('/info' , (req , res) => {
  *          { "id": 98765432, "name": "Honey Sweet", "year": 1967, "isFavorite": false }
  */
 // Your code here
+app.post('/movies', (req, res) => {
+    let id = Math.random();
+
+    if (req.body.favorite) {
+        req.body.isFavorite = true;
+    }
+    let obj = {
+        "id": id,
+        "name": req.body.name,
+        "year": Number(req.body.year),
+        "isFavorite": Boolean(req.body.isFavorite),
+    }
+
+    // console.log(obj);
+    res.json(obj);
+})
 
 /**
  *  Advanced Bonus Phase B - Research how to return static
@@ -122,6 +138,7 @@ app.get('/info' , (req , res) => {
  *      Test route: /logo.png
  */
 // Your code here
+app.use(express.static('public'))
 
 // DO NOT EDIT - Set port and listener
 if (require.main === module) {
