@@ -1,8 +1,11 @@
 const express = require('express');
+require('express-async-errors');
 const path = require('path')
+const loggerMiddleware = require('./middleware/loggerMiddleware')
 const app = express();
 
 app.use(express.json());
+app.use(loggerMiddleware);
 
 // For testing purposes, GET /
 app.get('/', (req, res) => {
@@ -23,6 +26,7 @@ app.get('/test-error', async (req, res) => {
 });
 
 app.use('/static',express.static('assets'))
+
 
 
 const port = 5000;
