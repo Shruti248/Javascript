@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 
 module.exports = (err , req , res , next) => {
 
@@ -8,5 +9,11 @@ module.exports = (err , req , res , next) => {
     const message = 'Something Went Wrong.'
     const errorStack = err.stack;
 
-    res.json({message , statusCode , errorStack})
+    if(process.env.NODE_ENV === 'production'){
+        res.json({message , statusCode });
+    }else if(process.env.NODE_ENV === 'development'){
+        res.json({message , statusCode , errorStack})
+    }else{
+        res.json('Invalid Environment')
+    }
 }
