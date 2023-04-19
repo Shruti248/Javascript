@@ -2,6 +2,7 @@ const express = require('express');
 require('express-async-errors');
 const path = require('path')
 const loggerMiddleware = require('./middleware/loggerMiddleware')
+const resourceNotFoundMIddleware = require('./middleware/resourceNotFoundMIddleware')
 const app = express();
 
 app.use(express.json());
@@ -26,7 +27,7 @@ app.get('/test-error', async (req, res) => {
 });
 
 app.use('/static',express.static('assets'))
-
+app.use(resourceNotFoundMIddleware);
 
 
 const port = 5000;
