@@ -4,6 +4,7 @@ const path = require('path')
 const loggerMiddleware = require('./middleware/loggerMiddleware')
 const resourceNotFoundMiddleware = require('./middleware/resourceNotFoundMIddleware')
 const errorHandlerMiddleware = require('./middleware/errorHanderMiddleware')
+require('dotenv').config();
 
 const router = require('./routes/dogs')
 const app = express();
@@ -36,5 +37,4 @@ app.use(resourceNotFoundMiddleware);
 app.use(errorHandlerMiddleware)
 
 
-const port = 5000;
-app.listen(port, () => console.log('Server is listening on port', port));
+app.listen(process.env.PORT, () => console.log('Server is listening on port', process.env.PORT));
