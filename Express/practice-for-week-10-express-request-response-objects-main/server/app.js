@@ -4,6 +4,29 @@ const app = express();
 
 app.use(express.json());
 
+
+
+// create a function `logTime` invoking the arguments `req`, `res`, `next`
+const logTime = (req, res, next) => {
+  // have your function log the "Current time: " string with the Date function
+  // to an ISO string
+  console.log("Current time: ", new Date().toISOString());
+
+  // Since no response has been returned yet invoke the `next` function so it
+  // knows to move on to the next middleware function
+  next();
+};
+
+const passOnMessage = (req, res, next) => {
+  console.log("Passing on a message!");
+  req.passedMessage = "Hello from passOnMessage!";
+  next();
+};
+
+// Application Level Middleware
+app.use(logTime);
+app.use(passOnMessage);
+
 /**
  *  Basic Phase 1 - Plain-text response
  *     Method: GET
@@ -11,7 +34,19 @@ app.use(express.json());
  *     Response (Text): "1.0.0"
  */
 // Your code here
+// app.get('/version', logTime , passOnMessage, (req, res) => {
+//     console.log(req.passedMessage);
+//     res.send('1.0.0');
+// })
+
+// app.get('/version', [logTime ,passOnMessage], (req, res) => {
+//     console.log(req.passedMessage);
+//     res.send('1.0.0');
+// })
+
+// If using application level middleware -- no need to pass as an argument
 app.get('/version', (req, res) => {
+    console.log(req.passedMessage);
     res.send('1.0.0');
 })
 
