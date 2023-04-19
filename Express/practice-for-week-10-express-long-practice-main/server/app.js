@@ -3,6 +3,8 @@ require('express-async-errors');
 const path = require('path')
 const loggerMiddleware = require('./middleware/loggerMiddleware')
 const resourceNotFoundMiddleware = require('./middleware/resourceNotFoundMIddleware')
+const errorHandlerMiddleware = require('./middleware/errorHanderMiddleware')
+
 const router = require('./routes/dogs')
 const app = express();
 
@@ -31,6 +33,7 @@ app.get('/test-error', async (req, res) => {
 
 app.use('/static',express.static('assets'))
 app.use(resourceNotFoundMiddleware);
+app.use(errorHandlerMiddleware)
 
 
 const port = 5000;
