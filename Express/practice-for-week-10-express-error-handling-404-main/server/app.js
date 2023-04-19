@@ -30,5 +30,15 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Catch all the error middleware
+app.use((err, req, res, next) => {
+  console.error(err);
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    message: err.message,
+    statusCode: statusCode
+  });
+});
+
 const port = 5000;
 app.listen(port, () => console.log('Server is listening on port', port));
