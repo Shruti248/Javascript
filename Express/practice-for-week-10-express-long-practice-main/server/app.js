@@ -2,11 +2,14 @@ const express = require('express');
 require('express-async-errors');
 const path = require('path')
 const loggerMiddleware = require('./middleware/loggerMiddleware')
-const resourceNotFoundMIddleware = require('./middleware/resourceNotFoundMIddleware')
+const resourceNotFoundMiddleware = require('./middleware/resourceNotFoundMIddleware')
+const router = require('./routes/dogs')
 const app = express();
 
 app.use(express.json());
 app.use(loggerMiddleware);
+
+app.use('/dogs' , router);
 
 // For testing purposes, GET /
 app.get('/', (req, res) => {
@@ -27,7 +30,7 @@ app.get('/test-error', async (req, res) => {
 });
 
 app.use('/static',express.static('assets'))
-app.use(resourceNotFoundMIddleware);
+app.use(resourceNotFoundMiddleware);
 
 
 const port = 5000;
